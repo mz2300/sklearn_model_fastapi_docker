@@ -46,6 +46,7 @@ def convert_to_output(preds):
         out += ': '
         out += str(p[2])
         out += '; '
+        out += '<br>'
 
     return out
 

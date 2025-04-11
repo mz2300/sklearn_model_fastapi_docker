@@ -7,10 +7,27 @@
 
 <body>
     <input type = 'file' id = 'imageInput' accept="image/*">
+    <br><br>
+    <img id="preview" src="#" alt="Image Preview" style="max-width: 300px; display: none;">
+    <br><br>
     <button onclick="uploadImage()">Classify</button>
     <p id = 'predictionResults'></p>
 
     <script type = 'text/javascript'>
+        <!-- A change event listener on the file input that reads the selected file and sets it as the image's src using FileReader. -->
+        document.getElementById('imageInput').addEventListener('change', function(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const preview = document.getElementById('preview');
+                            preview.src = e.target.result;
+                            preview.style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+
         async function uploadImage() {
             const input = document.getElementById('imageInput');
             if (!input.files[0]){
@@ -29,7 +46,7 @@
                 });
                 const result = await response.json();
                 console.log(result)
-                document.getElementById('predictionResults').textContent = `Prediction: ${result.predictions}`;
+                document.getElementById('predictionResults').innerHTML = `Prediction: ${result.predictions}`;
             } catch (error) {
                 console.error('Error:', error);
                 alert('FAILED');
