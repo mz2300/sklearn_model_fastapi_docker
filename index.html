@@ -25,6 +25,8 @@
                             preview.style.display = 'block';
                         };
                         reader.readAsDataURL(file);
+
+                        document.getElementById('predictionResults').textContent = '';
                     }
                 });
 
@@ -46,7 +48,7 @@
                 });
                 const result = await response.json();
                 console.log(result)
-                document.getElementById('predictionResults').innerHTML = `Prediction: ${result.predictions}`;
+                document.getElementById('predictionResults').innerHTML = `Prediction:<br>${result.predictions}`;
             } catch (error) {
                 console.error('Error:', error);
                 alert('FAILED');

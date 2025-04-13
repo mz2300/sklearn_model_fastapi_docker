@@ -6,8 +6,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
-from keras.applications.efficientnet import EfficientNetB0
-from keras.applications.efficientnet import preprocess_input, decode_predictions
+from tensorflow.keras.applications.efficientnet import EfficientNetB0
+from tensorflow.keras.applications.efficientnet import preprocess_input, decode_predictions
 
 
 
