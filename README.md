@@ -1,39 +1,36 @@
-An example project of scikit-learn model deployment with FastAPI and Docker.
+Pretrained model deployment with FastAPI and Docker.
 
 ## Project description
-```
-sklearn_model_fastapi_docker
-  ├───model
-      │   wine.py
-      ├───ml
-          │   train.ipynb
-          │   wine_model.joblib
-  ├─── .dockerignore
-  ├─── .gitignore
-  ├─── app.py
-  ├─── deploy.sh
-  ├─── Dockerfile
-  ├─── requirements.txt
 
-```
-**app.py** is an entry point of the project
+Here I use pretrained EfficientNetB0 model from `tensorflow.keras.applications` for image classification. Example of images can be found in `imgs` folder.
 
   
 ## How To Run
-The only thing you need to run project in Docker is **Docker Desktop installed on your computer**.
 
-1. Run ***deploy.sh*** file
-2. Go to http://127.0.0.1:8080/docs
-3. Try out the post /predict method.
-You can use predefined test data or your custom data like
+**app.py** is an entry point of the project
+
+### Run locally
+1. Set up a virtual environment:
 ```
-{
-  "data": [
-    [14.23, 1.71, 2.43, 15.6, 127.0, 2.80, 3.06, 0.28, 2.29, 5.64, 1.04, 3.92, 1065.0],
-    [13.20, 1.78, 2.14, 15.6, 127.0, 2.80, 3.06, 0.28, 2.29, 5.64, 1.04, 3.92, 1065.0]
-  ]
-}
+python -m venv .venv
+.venv\Scripts\activate 
+pip install -r requirements.txt
 ```
+2. Run `uvicorn app:app --port 8080`
+3. Open `index.html` in browser
+4. Select any image and classify it
+
+Example:
+
+![screenshot](readme_src/example.png)
+
+### Run in a Docker container
+
+The only thing you need to run this project in Docker is **Docker Desktop installed on your computer**.
+
+1. Run ***.\deploy.ps1*** in PowerShell
+2. Open `index.html` in browser
+3. Select any image and classify it
 
 ## Additionally
 
